@@ -5,11 +5,11 @@ function _forEach(array, cb, current, ret) {
   if (ret == undefined) {
     ret = [];
   }
-  return cb(current)
+  return cb(array[current])
   .then(function(res){
     current++
     ret.push(res)
-    if (current <= array.length-1) return _forEach(from, to, cb, array[current], ret);
+    if (current <= array.length-1) return _forEach(array, cb, current, ret);
     return Promise.resolve(ret);
   });
 };
