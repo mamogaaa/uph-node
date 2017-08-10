@@ -1,4 +1,4 @@
-function _forEach(array cb, current, ret) {
+function _forEach(array, cb, current, ret) {
   if (current == undefined) {
     current = 0;
   }
