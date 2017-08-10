@@ -2,17 +2,16 @@ function _for(from, to, cb, current) {
   if (current == undefined) {
     current = from;
   }
-  if (current != to) {
-    return cb(current)
-    .then(function(){
-      if (from > to) {
-        current--
-      } else {
-        current++
-      }
-      _for(from, to, cb, current);
-    });
-  }
+  return cb(current)
+  .then(function(res){
+    if (from > to) {
+      current--
+    } else {
+      current++
+    }
+    if (current != to) return _for(from, to, cb, current);
+    return Promise.resolve(res);
+  });
 };
 
 module.exports = _for;

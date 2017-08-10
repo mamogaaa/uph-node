@@ -7,12 +7,11 @@ function _while(condition, cb) {
     cb = condition;
     condition = true;
   }
-  if (condition) {
-    return cb()
-    .then(function(){
-      _while(condition, cb);
-    });
-  }
+  return cb()
+  .then(function(res){
+    if (condition) return _while(condition, cb);
+    return Promise.resolve(res);
+  });
 };
 
 module.exports = _while;
